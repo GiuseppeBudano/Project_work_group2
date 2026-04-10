@@ -32,7 +32,7 @@ def analisi_qualitativa(df, nome):
     print("\nNumero di valori unici per colonna:")
     print(unici)
 
-    variabili_temporali = ["ORDER_YEAR", "ORDER_MONTH","ORDER_WEEK"]
+    variabili_temporali = ["ORDER_YEAR","ORDER_MONTH","ORDER_WEEK"]
 
     numeriche = df.select_dtypes(include=np.number)
     numeriche = numeriche.drop(
@@ -60,7 +60,7 @@ def analisi_qualitativa(df, nome):
 def statistiche_numeriche(df, nome):
     numeriche = df.select_dtypes(include=np.number)
 
-    numeriche = numeriche.drop(columns=[col for col in numeriche.columns if "ID" in col or col in ["ORDER_YEAR", "ORDER_MONTH","Order_WEEK"]],errors="ignore")
+    numeriche = numeriche.drop(columns=[col for col in numeriche.columns if "ID" in col or col in ["ORDER_YEAR", "ORDER_MONTH","ORDER_WEEK"]],errors="ignore")
 
     if numeriche.shape[1] == 0:
         print(f"\n{nome}: nessuna variabile numerica rilevante.")
