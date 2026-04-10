@@ -1,0 +1,9 @@
+#Dipendenze da scaricare per eseguire il codice
+#eseguire il comando pip install -r requirements.txt da terminale
+
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+openpyxl
