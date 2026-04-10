@@ -28,18 +28,18 @@ def main():
     if file_caricati:
         st.success(f"Caricati {len(file_caricati)} file con successo.")
         
-        # Salvataggio locale per farli leggere a etl.py (da eliminare in futuro)
+        # Salvataggio in RAM tramite dizionario
+        tabelle = {}
         for file in file_caricati:
-            with open(file.name, "wb") as f:
-                f.write(file.getbuffer())
-        #in futuro potremmo voler standardizzare i nomi delle tabelle in modo più robusto
+            df = pd.read_csv(file)
+            nome = file.name.replace(".csv", "").replace(".CSV", "").upper()
+            tabelle[nome] = df
                
         if st.button("Avvia Pipeline Completa (ETL -> Statistiche -> Grafici -> Forecast)"):
             with st.spinner("Elaborazione in corso..."):              
                 
-    
                 # 1. ETL (passando il dizionario)
-                df_olap = etl.esegui_etl(salva=False)
+                df_olap = etl.esegui_etl(carica=False, salva=False, tabelle=tabelle)
                 st.session_state.df_olap = df_olap
                 
                 # 2. FORECAST
