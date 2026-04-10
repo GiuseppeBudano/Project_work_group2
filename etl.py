@@ -425,7 +425,7 @@ def salva_file_olap(df, nome_file="sales_merge.csv"):
     print(f"[OK] File OLAP salvato correttamente: {nome_file}")
     print(f"[INFO] Dimensioni: {righe} righe, {colonne} colonne")
 
-def main(salva=True):
+def esegui_etl(salva=True):
     #Caricamento dei file csv
     print("\n=== CARICAMENTO TABELLE ===")
     tabelle = carica_tabelle()
@@ -472,4 +472,4 @@ def main(salva=True):
     return df_merge
 
 if __name__ == "__main__":
-    main()
+    esegui_etl()
