@@ -48,7 +48,7 @@ project/
 ├── grafici.py              # Visualizzazione dati: grafici e plot
 ├── ForecastingLib.py       # Forecasting: aggregazione, training, previsioni
 │
-├── SALES.csv                       # Tabella dei fatti
+├── SALES.csv                       # Tabella delle vendite
 ├── CUSTOMER_LOOKUP.csv             # Dimensione clienti
 ├── ITEM_LOOKUP.csv                 # Dimensione articoli/prodotti
 ├── COMPANY_LOOKUP.csv              # Dimensione aziende
