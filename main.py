@@ -64,11 +64,11 @@ def main():
                 df_finale = pd.concat([storico, previsioni_lr], ignore_index=True)
 
                 # Salva tutto in session_state per non ricalcolare al prossimo render
-                st.session_state.aggregazioni  = aggregazioni
-                st.session_state.modello_lr    = modello_lr
-                st.session_state.modello_gbr   = modello_gbr
-                st.session_state.metriche_lr   = metriche_lr
-                st.session_state.metriche_gbr  = metriche_gbr
+                st.session_state.aggregazioni   = aggregazioni
+                st.session_state.modello_lr     = modello_lr
+                st.session_state.modello_gbr    = modello_gbr
+                st.session_state.metriche_lr    = metriche_lr
+                st.session_state.metriche_gbr   = metriche_gbr
                 st.session_state.previsioni_lr  = previsioni_lr
                 st.session_state.previsioni_gbr = previsioni_gbr
                 st.session_state.previsioni_12  = previsioni_12
@@ -82,8 +82,14 @@ def main():
         st.success("Dati trasformati e modelli applicati con successo!")
         
         # Recupero i dati dalla memoria
-        df_olap = st.session_state.df_olap
-        df_finale = st.session_state.df_finale
+        df_olap        = st.session_state.df_olap
+        df_finale      = st.session_state.df_finale
+        aggregazioni   = st.session_state.aggregazioni
+        metriche_lr    = st.session_state.metriche_lr
+        metriche_gbr   = st.session_state.metriche_gbr
+        previsioni_lr  = st.session_state.previsioni_lr
+        previsioni_gbr = st.session_state.previsioni_gbr
+        previsioni_12  = st.session_state.previsioni_12
 
         # --- 2. STATISTICHE (EXCEL IN MEMORIA) ---
         st.header("2. Statistiche Descrittive")
