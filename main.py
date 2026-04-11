@@ -11,7 +11,12 @@ import ForecastingLib
 import stat_xlsx      
 
 def main():
-    st.title("Analisi e Previsione Vendite")
+    # 1. Intestazione con Logo e Titolo (proporzioni studiate per evitare il wrap)
+    col_logo, col_titolo = st.columns([0.12, 0.88])
+    with col_logo:
+        st.image("images/logo_cefla.png", width=85)
+    with col_titolo:
+        st.title("Analisi e Previsione Vendite")
     st.write("Carica il dataset storico per ETL, Statistiche, Grafici e Forecasting.")
 
     # Inizializzo la memoria di Streamlit
