@@ -15,17 +15,19 @@ import seaborn as sns
 def imposta_stile():
     """Imposta il tema globale per i grafici."""
     sns.set_theme(style="whitegrid")
+    # Modifica (larghezza, altezza) per tutti i grafici
+    plt.rcParams['figure.figsize'] = (10, 4)
 
 def plot_istogramma_ricavi(df):
     """Istogramma ricavi: distribuzione della tipologia di vendita."""
-    plt.figure(figsize=(8, 5))
+    #plt.figure(figsize=(8, 5)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.histplot(df['VAL_REVENUES'], bins=50, kde=True)
     plt.title('Distribuzione dei Ricavi (Revenues)')
     plt.show()
 
 def plot_ordini_per_nazione(df):
     """Analisi Categorica: Numero di transazioni per Nazione."""
-    plt.figure(figsize=(10, 5))
+    #plt.figure(figsize=(10, 5)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.countplot(data=df, x='ID_COUNTRY', order=df['ID_COUNTRY'].value_counts().index)
     plt.title('Numero di Ordini per Nazione')
     plt.xticks(rotation=45)
@@ -37,7 +39,7 @@ def plot_ricavi_per_azienda(df):
     company_stats['VAL_REVENUES_MLN'] = company_stats['VAL_REVENUES'] / 1_000_000
     company_stats = company_stats.sort_values(by='VAL_REVENUES_MLN', ascending=False)
 
-    plt.figure(figsize=(12, 6))
+    #plt.figure(figsize=(12, 6)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.barplot(data=company_stats, x='ID_COMPANY', y='VAL_REVENUES_MLN')
     plt.title('Ricavi Totali per Azienda (in Milioni di €)')
     plt.xlabel('Azienda (ID)')
@@ -47,7 +49,7 @@ def plot_ricavi_per_azienda(df):
 
 def plot_distribuzione_business_line(df):
     """Analisi per Business Line (Boxplot)."""
-    plt.figure(figsize=(10, 6))
+    #plt.figure(figsize=(10, 6)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.boxplot(data=df, x='ID_BUSINESS_LINE', y='VAL_REVENUES')
     plt.title('Distribuzione dei Ricavi per Business Line')
     plt.xlabel('Business Line')
@@ -57,14 +59,14 @@ def plot_distribuzione_business_line(df):
 
 def plot_correlazione_costi_ricavi(df):
     """Correlazione lineare tra Costi e Ricavi."""
-    plt.figure(figsize=(6, 5))
+    #plt.figure(figsize=(6, 5)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.scatterplot(data=df, x='VAL_COST', y='VAL_REVENUES')
     plt.title('Correlazione lineare tra Costo e Ricavo')
     plt.show()
 
 def plot_heatmap_correlazioni(df):
     """Heatmap delle correlazioni (solo per le colonne numeriche base)."""
-    plt.figure(figsize=(6, 4))
+    #plt.figure(figsize=(6, 4)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.heatmap(df[['VAL_REVENUES', 'VAL_COST']].corr(), annot=True, cmap='coolwarm')
     plt.title('Mappa di Correlazione')
     plt.show()
@@ -73,7 +75,7 @@ def plot_heatmap_profitto(df):
     """Correlazione con il Margine di Profitto (Profit)."""
     df['VAL_PROFIT'] = df['VAL_REVENUES'] - df['VAL_COST']
 
-    plt.figure(figsize=(7, 5))
+    #plt.figure(figsize=(7, 5))# Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.heatmap(df[['VAL_REVENUES', 'VAL_COST', 'VAL_PROFIT']].corr(), annot=True, cmap='coolwarm', vmin=-1, vmax=1)
     plt.title('Mappa di Correlazione (incluso Profitto)')
     plt.show()
@@ -83,7 +85,7 @@ def plot_trend_ricavi_tempo(df):
     df['DATA_ORDINE'] = pd.to_datetime(df['ID_ORDER_DATE'], format='%Y%m%d')
     trend_vendite = df.groupby('DATA_ORDINE')['VAL_REVENUES'].sum().reset_index()
 
-    plt.figure(figsize=(12, 5))
+    #plt.figure(figsize=(12, 5)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.lineplot(data=trend_vendite, x='DATA_ORDINE', y='VAL_REVENUES')
     plt.title('Trend Temporale dei Ricavi')
     plt.xlabel('Data')
@@ -98,7 +100,7 @@ def plot_correlazione_frequenza_ricavo(df):
         Ricavo_Totale=('VAL_REVENUES', 'sum')
     )
 
-    plt.figure(figsize=(7, 5))
+    #plt.figure(figsize=(7, 5)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.scatterplot(data=clienti_stats, x='Numero_Ordini', y='Ricavo_Totale')
     plt.title('Correlazione: N° Ordini vs Ricavo Totale per Cliente')
     plt.xlabel('Numero di Ordini Effettuati')
@@ -112,7 +114,7 @@ def plot_tempi_fatturazione_importo(df):
     df_cleaned = df.dropna(subset=['ORDER_DATE', 'INVOICE_DATE']).copy()
     df_cleaned['GIORNI_FATTURAZIONE'] = (df_cleaned['INVOICE_DATE'] - df_cleaned['ORDER_DATE']).dt.days
 
-    plt.figure(figsize=(7, 5))
+    #plt.figure(figsize=(7, 5)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.scatterplot(data=df_cleaned, x='VAL_REVENUES', y='GIORNI_FATTURAZIONE')
     plt.title('Correlazione: Importo Ordine vs Tempi di Fatturazione')
     plt.xlabel('Ricavi')
@@ -133,7 +135,7 @@ def plot_rfm(df):
         Monetary=('VAL_REVENUES', 'sum')
     ).reset_index()
 
-    plt.figure(figsize=(10, 6))
+    #plt.figure(figsize=(10, 6)) # Rimosso per usare la dimensione globale impostata in imposta_stile()
     sns.scatterplot(
         data=df_rfm,
         x='Recency',

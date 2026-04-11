@@ -10,9 +10,11 @@ import grafici
 import ForecastingLib  
 import stat_xlsx      
 
+
+st.set_page_config(layout="wide")
 def main():
     # 1. Intestazione con Logo e Titolo (proporzioni studiate per evitare il wrap)
-    col_logo, col_titolo = st.columns([0.12, 0.88])
+    col_logo, col_titolo = st.columns([1, 20])       #prima era ([0.12, 0.88]) quando era centrato
     with col_logo:
         st.image("images/logo_cefla.png", width=85)
     with col_titolo:
@@ -159,7 +161,10 @@ def main():
         plt.show = st_show
         
         grafici.plot_istogramma_ricavi(df_olap)
+        grafici.plot_ricavi_per_azienda(df_olap)
         grafici.plot_trend_ricavi_tempo(df_olap)
+        grafici.plot_heatmap_correlazioni(df_olap)
+        grafici.plot_rfm(df_olap)
         
         plt.show = original_show
 
