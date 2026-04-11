@@ -42,22 +42,38 @@ def main():
                 df_olap = etl.esegui_etl(carica=False, salva=False, tabelle=tabelle)
                 st.session_state.df_olap = df_olap
                 
-                # 2. FORECAST
+                # 2. FORECASTING — vedi sezione dedicata più sotto
                 aggregazioni = ForecastingLib.aggrega_dati(df_olap)
-                modello, metriche = ForecastingLib.addestra_modello(aggregazioni["mensile"])
-                previsioni = ForecastingLib.genera_previsioni(modello, aggregazioni["mensile"], n_mesi=6)
-                
+
+                modello_lr,  metriche_lr  = ForecastingLib.addestra_modello(aggregazioni["mensile"])
+                modello_gbr, metriche_gbr = ForecastingLib.addestra_modello_gbr(aggregazioni["mensile"])
+
+                previsioni_lr  = ForecastingLib.genera_previsioni(modello_lr,  aggregazioni["mensile"], n_mesi=6)
+                previsioni_gbr = ForecastingLib.genera_previsioni(modello_gbr, aggregazioni["mensile"], n_mesi=6)
+                previsioni_12  = ForecastingLib.genera_previsioni(modello_lr,  aggregazioni["mensile"], n_mesi=12)
+
+                # Costruisce la tabella storico + previsioni LR per l'export Power BI
                 storico = aggregazioni["mensile"].groupby(["ORDER_YEAR", "ORDER_MONTH"]).agg(
                     FORECAST_REVENUES=("TOTAL_REVENUES", "sum")
                 ).reset_index()
-                
-                storico["DATE"] = pd.to_datetime(storico["ORDER_YEAR"].astype(str) + "-" + storico["ORDER_MONTH"].astype(str).str.zfill(2) + "-01")
+                storico["DATE"] = pd.to_datetime(
+                    storico["ORDER_YEAR"].astype(str) + "-" +
+                    storico["ORDER_MONTH"].astype(str).str.zfill(2) + "-01"
+                )
                 storico["TIPO"] = "STORICO"
-                
-                df_finale = pd.concat([storico, previsioni], ignore_index=True)
-                st.session_state.df_finale = df_finale
-                
-                # Segno che i calcoli sono finiti e ricarico
+                df_finale = pd.concat([storico, previsioni_lr], ignore_index=True)
+
+                # Salva tutto in session_state per non ricalcolare al prossimo render
+                st.session_state.aggregazioni  = aggregazioni
+                st.session_state.modello_lr    = modello_lr
+                st.session_state.modello_gbr   = modello_gbr
+                st.session_state.metriche_lr   = metriche_lr
+                st.session_state.metriche_gbr  = metriche_gbr
+                st.session_state.previsioni_lr  = previsioni_lr
+                st.session_state.previsioni_gbr = previsioni_gbr
+                st.session_state.previsioni_12  = previsioni_12
+                st.session_state.df_finale      = df_finale
+
                 st.session_state.pipeline_completata = True
                 st.rerun()
 
@@ -103,6 +119,49 @@ def main():
 
         # --- 4. FORECAST ---
         st.header("4. Generazione Previsioni")
+
+        # ── 4a. Metriche di valutazione ──────────────────────────────────────
+        st.subheader("4a. Metriche di valutazione (Cross-Validation)")
+        st.write(
+            "Le metriche sono calcolate con TimeSeriesSplit (3 fold): il modello "
+            "viene sempre valutato su mesi che non ha mai visto durante il training."
+        )
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown("**Regressione Lineare**")
+            st.metric("MAE medio (€)",  f"{metriche_lr['MAE_medio_cv']:,.0f}")
+            st.metric("RMSE medio (€)", f"{metriche_lr['RMSE_medio_cv']:,.0f}")
+            st.metric("R² medio",       f"{metriche_lr['R2_medio_cv']:.4f}")
+
+        with col2:
+            st.markdown("**GradientBoosting**")
+            st.metric("MAE medio (€)",  f"{metriche_gbr['MAE_medio_cv']:,.0f}")
+            st.metric("RMSE medio (€)", f"{metriche_gbr['RMSE_medio_cv']:,.0f}")
+            st.metric("R² medio",       f"{metriche_gbr['R2_medio_cv']:.4f}")
+
+        # Dettaglio per fold — espandibile per non appesantire la pagina
+        with st.expander("Mostra dettaglio per fold"):
+            fold_data = {
+                "Fold": [1, 2, 3],
+                "MAE LR (€)":  [f"{v:,.0f}" for v in metriche_lr["mae_per_fold"]],
+                "R² LR":       [f"{v:.4f}"  for v in metriche_lr["r2_per_fold"]],
+                "MAE GBR (€)": [f"{v:,.0f}" for v in metriche_gbr["mae_per_fold"]],
+                "R² GBR":      [f"{v:.4f}"  for v in metriche_gbr["r2_per_fold"]],
+            }
+            st.dataframe(pd.DataFrame(fold_data), use_container_width=True)
+
+        # Importanza feature GBR
+        with st.expander("Importanza delle feature (GradientBoosting)"):
+            importanze = metriche_gbr.get("feature_importances", {})
+            if importanze:
+                df_imp = pd.DataFrame(
+                    importanze.items(), columns=["Feature", "Importanza"]
+                ).sort_values("Importanza", ascending=False)
+                st.dataframe(df_imp, use_container_width=True)
+
+        # ── 4b. Previsioni a 6 mesi — singolo modello ────────────────────────
         st.dataframe(df_finale)
 
         # --- 5. EXPORT FINALE ---
