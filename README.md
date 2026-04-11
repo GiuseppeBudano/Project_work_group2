@@ -1,4 +1,4 @@
-[README (1).md](https://github.com/user-attachments/files/26647847/README.1.md)
+[README.md](https://github.com/user-attachments/files/26647847/README.1.md)
 # Analisi e Previsione delle Vendite
 
 Un'applicazione Python standalone che analizza dati storici di vendita, genera report statistici, addestra un modello di previsione ed esporta un dataset OLAP denormalizzato pronto per Power BI.
