@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import io # Aggiunto per gestire i file in memoria RAM
@@ -105,6 +106,40 @@ def main():
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
+        # Visualizzazione statistiche stat_mono nell'interfaccia
+        with st.expander("Visualizza Analisi Qualitativa e Descrittiva"):
+            st.subheader("Analisi Qualitativa")
+            st.write(f"**Dimensioni:** {df_olap.shape[0]} righe x {df_olap.shape[1]} colonne")
+            
+            # Missing values (logica di analisi_qualitativa)
+            missing = df_olap.isnull().sum()
+            if missing.any():
+                st.write("**Valori mancanti per colonna:**")
+                st.dataframe(missing[missing > 0])
+            
+            # Statistiche Numeriche (logica di statistiche_numeriche)
+            st.subheader("Statistiche Numeriche")
+            var_escluse = ["ORDER_YEAR", "ORDER_MONTH", "ORDER_WEEK"]
+            numeriche = df_olap.select_dtypes(include=np.number).drop(
+                columns=[col for col in df_olap.columns if "ID" in col or col in var_escluse], 
+                errors="ignore"
+            )
+            st.dataframe(numeriche.describe().T.round(2), use_container_width=True)
+
+            # Statistiche Categoriche (logica di statistiche_categoriche)
+            st.subheader("Distribuzione Variabili Categoriche (Top 10)")
+            categoriche = df_olap.select_dtypes(include=["object", "category", "bool"])
+            for col in categoriche.columns:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.write(f"**{col}**")
+                with col2:
+                    res = pd.DataFrame({
+                        "Frequenza": df_olap[col].value_counts().head(10),
+                        "Percentuale (%)": (df_olap[col].value_counts(normalize=True).head(10)*100).round(2)
+                    })
+                    st.dataframe(res, use_container_width=True)
+                    
         # --- 3. GRAFICI (CON PULIZIA MEMORIA) ---
         st.header("3. Analisi Visiva")
         grafici.imposta_stile()
