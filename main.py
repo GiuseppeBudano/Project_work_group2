@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import io # Aggiunto per gestire i file in memoria RAM
 
 # Importo i tuoi moduli 
-import etl             
-import grafici
-import ForecastingLib  
-import stat_xlsx      
+from modules import etl             
+from modules import grafici
+from modules import ForecastingLib  
+from modules import stat_xlsx      
 
 
 st.set_page_config(layout="wide")
