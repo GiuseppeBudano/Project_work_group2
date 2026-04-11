@@ -203,6 +203,7 @@ def main():
                 st.dataframe(df_imp, use_container_width=True)
 
         # ── 4b. Previsioni a 6 mesi — singolo modello ────────────────────────
+        st.subheader("4b. Previsioni a 6 mesi — Regressione Lineare ")
         st.dataframe(df_finale)
 
         # --- 5. EXPORT FINALE ---
