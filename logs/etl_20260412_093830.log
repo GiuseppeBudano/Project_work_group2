@@ -1,2 +1,442 @@
 2026-04-12 09:38:30,207 - INFO - Logger inizializzato correttamente (etl.py::crea_logger)
 2026-04-12 09:38:30,207 - INFO - === AVVIO ETL (etl.py::main) ===
+2026-04-12 09:38:47,722 - INFO - 
+
+=== [main] FASE 1: CARICAMENTO DATASET ===
+2026-04-12 09:38:47,723 - OK - [main] Tabelle ricevute da Streamlit. Salto carica_tabelle_csv().
+2026-04-12 09:38:47,723 - OK - [main] Tutte le tabelle richieste sono presenti.
+2026-04-12 09:38:47,723 - INFO - 
+
+=== [main] FASE 2: CONTROLLO DUPLICATI ===
+2026-04-12 09:38:47,723 - INFO - [rimuovi_duplicati] Controllo dei duplicati nella tabella AREA_MANAGER_LOOKUP
+2026-04-12 09:38:47,745 - INFO - Nella tabella 'AREA_MANAGER_LOOKUP' sono state eliminate 0 righe duplicate.
+2026-04-12 09:38:47,746 - INFO - [rimuovi_duplicati] Controllo dei duplicati nella tabella COMPANY_LOOKUP
+2026-04-12 09:38:47,749 - INFO - Nella tabella 'COMPANY_LOOKUP' sono state eliminate 0 righe duplicate.
+2026-04-12 09:38:47,749 - INFO - [rimuovi_duplicati] Controllo dei duplicati nella tabella CUSTOMER_LOOKUP
+2026-04-12 09:38:47,755 - INFO - Nella tabella 'CUSTOMER_LOOKUP' sono state eliminate 0 righe duplicate.
+2026-04-12 09:38:47,755 - INFO - [rimuovi_duplicati] Controllo dei duplicati nella tabella ITEM_BUSINESS_LINE_LOOKUP
+2026-04-12 09:38:47,756 - INFO - Nella tabella 'ITEM_BUSINESS_LINE_LOOKUP' sono state eliminate 0 righe duplicate.
+2026-04-12 09:38:47,756 - INFO - [rimuovi_duplicati] Controllo dei duplicati nella tabella ITEM_LOOKUP
+2026-04-12 09:38:47,760 - INFO - Nella tabella 'ITEM_LOOKUP' sono state eliminate 197 righe duplicate.
+2026-04-12 09:38:47,760 - INFO - [rimuovi_duplicati] Controllo dei duplicati nella tabella SALES
+2026-04-12 09:38:47,767 - INFO - Nella tabella 'SALES' sono state eliminate 11 righe duplicate.
+2026-04-12 09:38:47,767 - INFO - 
+
+=== [main] FASE 3: CONTROLLO CHIAVI ===
+2026-04-12 09:38:47,767 - INFO - 
+
+=== [controlla_chiavi] FASE 3.1: CONTROLLO CHIAVI PRIMARIE ===
+2026-04-12 09:38:47,767 - INFO - 
+--- [controlla_pk] Controllo PK: IDS_CUSTOMER per la tabella: CUSTOMER_LOOKUP ---
+2026-04-12 09:38:47,767 - OK - La colonna PK 'IDS_CUSTOMER' esiste.
+2026-04-12 09:38:47,768 - OK - La PK 'IDS_CUSTOMER' è stata convertita a stringa.
+2026-04-12 09:38:47,769 - OK - Nessun NaN nella PK 'IDS_CUSTOMER'.
+2026-04-12 09:38:47,770 - OK - La PK 'IDS_CUSTOMER' è univoca.
+2026-04-12 09:38:47,772 - OK - Tipo coerente: str
+2026-04-12 09:38:47,772 - INFO - 
+--- [controlla_pk] Controllo PK: IDS_CUSTOMER per la tabella: CUSTOMER_LOOKUP ---
+2026-04-12 09:38:47,773 - OK - La colonna PK 'IDS_CUSTOMER' esiste.
+2026-04-12 09:38:47,773 - OK - La PK 'IDS_CUSTOMER' è stata convertita a stringa.
+2026-04-12 09:38:47,773 - OK - Nessun NaN nella PK 'IDS_CUSTOMER'.
+2026-04-12 09:38:47,774 - OK - La PK 'IDS_CUSTOMER' è univoca.
+2026-04-12 09:38:47,775 - OK - Tipo coerente: str
+2026-04-12 09:38:47,775 - INFO - 
+--- [controlla_pk] Controllo PK: IDS_ITEM per la tabella: ITEM_LOOKUP ---
+2026-04-12 09:38:47,775 - OK - La colonna PK 'IDS_ITEM' esiste.
+2026-04-12 09:38:47,776 - OK - La PK 'IDS_ITEM' è stata convertita a stringa.
+2026-04-12 09:38:47,776 - OK - Nessun NaN nella PK 'IDS_ITEM'.
+2026-04-12 09:38:47,777 - OK - La PK 'IDS_ITEM' è univoca.
+2026-04-12 09:38:47,778 - OK - Tipo coerente: str
+2026-04-12 09:38:47,778 - INFO - 
+--- [controlla_pk] Controllo PK: IDS_ITEM per la tabella: ITEM_LOOKUP ---
+2026-04-12 09:38:47,778 - OK - La colonna PK 'IDS_ITEM' esiste.
+2026-04-12 09:38:47,778 - OK - La PK 'IDS_ITEM' è stata convertita a stringa.
+2026-04-12 09:38:47,779 - OK - Nessun NaN nella PK 'IDS_ITEM'.
+2026-04-12 09:38:47,779 - OK - La PK 'IDS_ITEM' è univoca.
+2026-04-12 09:38:47,780 - OK - Tipo coerente: str
+2026-04-12 09:38:47,780 - INFO - 
+--- [controlla_pk] Controllo PK: ID_AREA_MANAGER per la tabella: AREA_MANAGER_LOOKUP ---
+2026-04-12 09:38:47,780 - OK - La colonna PK 'ID_AREA_MANAGER' esiste.
+2026-04-12 09:38:47,781 - OK - La PK 'ID_AREA_MANAGER' è stata convertita a stringa.
+2026-04-12 09:38:47,781 - OK - Nessun NaN nella PK 'ID_AREA_MANAGER'.
+2026-04-12 09:38:47,782 - OK - La PK 'ID_AREA_MANAGER' è univoca.
+2026-04-12 09:38:47,783 - OK - Tipo coerente: str
+2026-04-12 09:38:47,783 - INFO - 
+--- [controlla_pk] Controllo PK: ID_AREA_MANAGER per la tabella: AREA_MANAGER_LOOKUP ---
+2026-04-12 09:38:47,783 - OK - La colonna PK 'ID_AREA_MANAGER' esiste.
+2026-04-12 09:38:47,783 - OK - La PK 'ID_AREA_MANAGER' è stata convertita a stringa.
+2026-04-12 09:38:47,784 - OK - Nessun NaN nella PK 'ID_AREA_MANAGER'.
+2026-04-12 09:38:47,784 - OK - La PK 'ID_AREA_MANAGER' è univoca.
+2026-04-12 09:38:47,785 - OK - Tipo coerente: str
+2026-04-12 09:38:47,785 - INFO - 
+--- [controlla_pk] Controllo PK: ID_BUSINESS_LINE per la tabella: ITEM_BUSINESS_LINE_LOOKUP ---
+2026-04-12 09:38:47,785 - OK - La colonna PK 'ID_BUSINESS_LINE' esiste.
+2026-04-12 09:38:47,786 - OK - La PK 'ID_BUSINESS_LINE' è stata convertita a stringa.
+2026-04-12 09:38:47,786 - OK - Nessun NaN nella PK 'ID_BUSINESS_LINE'.
+2026-04-12 09:38:47,786 - OK - La PK 'ID_BUSINESS_LINE' è univoca.
+2026-04-12 09:38:47,787 - OK - Tipo coerente: str
+2026-04-12 09:38:47,787 - INFO - 
+--- [controlla_pk] Controllo PK: ID_BUSINESS_LINE per la tabella: ITEM_BUSINESS_LINE_LOOKUP ---
+2026-04-12 09:38:47,787 - OK - La colonna PK 'ID_BUSINESS_LINE' esiste.
+2026-04-12 09:38:47,788 - OK - La PK 'ID_BUSINESS_LINE' è stata convertita a stringa.
+2026-04-12 09:38:47,788 - OK - Nessun NaN nella PK 'ID_BUSINESS_LINE'.
+2026-04-12 09:38:47,788 - OK - La PK 'ID_BUSINESS_LINE' è univoca.
+2026-04-12 09:38:47,789 - OK - Tipo coerente: str
+2026-04-12 09:38:47,789 - INFO - 
+--- [controlla_pk] Controllo PK: ID_COMPANY per la tabella: COMPANY_LOOKUP ---
+2026-04-12 09:38:47,789 - OK - La colonna PK 'ID_COMPANY' esiste.
+2026-04-12 09:38:47,790 - OK - La PK 'ID_COMPANY' è stata convertita a stringa.
+2026-04-12 09:38:47,790 - OK - Nessun NaN nella PK 'ID_COMPANY'.
+2026-04-12 09:38:47,791 - OK - La PK 'ID_COMPANY' è univoca.
+2026-04-12 09:38:47,791 - OK - Tipo coerente: str
+2026-04-12 09:38:47,792 - INFO - 
+--- [controlla_pk] Controllo PK: ID_COMPANY per la tabella: COMPANY_LOOKUP ---
+2026-04-12 09:38:47,792 - OK - La colonna PK 'ID_COMPANY' esiste.
+2026-04-12 09:38:47,792 - OK - La PK 'ID_COMPANY' è stata convertita a stringa.
+2026-04-12 09:38:47,792 - OK - Nessun NaN nella PK 'ID_COMPANY'.
+2026-04-12 09:38:47,793 - OK - La PK 'ID_COMPANY' è univoca.
+2026-04-12 09:38:47,793 - OK - Tipo coerente: str
+2026-04-12 09:38:47,793 - INFO - 
+
+=== [controlla_chiavi] FASE 3.2: CONTROLLO CHIAVI ESTERNE ===
+2026-04-12 09:38:47,794 - INFO - 
+--- [controlla_fk] Controllo FK SALES.ID_COMPANY --> COMPANY_LOOKUP.ID_COMPANY ---
+2026-04-12 09:38:47,795 - OK - Convertite a stringa FK 'ID_COMPANY' e PK 'ID_COMPANY'.
+2026-04-12 09:38:47,795 - OK - Nessun NaN nella FK 'ID_COMPANY'.
+2026-04-12 09:38:47,797 - OK - Nessun valore orfano.
+2026-04-12 09:38:47,797 - OK - Tipi coerenti tra FK e PK.
+2026-04-12 09:38:47,797 - INFO - 
+--- [controlla_fk] Controllo FK SALES.IDS_CUSTOMER --> CUSTOMER_LOOKUP.IDS_CUSTOMER ---
+2026-04-12 09:38:47,797 - OK - Convertite a stringa FK 'IDS_CUSTOMER' e PK 'IDS_CUSTOMER'.
+2026-04-12 09:38:47,798 - OK - Nessun NaN nella FK 'IDS_CUSTOMER'.
+2026-04-12 09:38:47,800 - OK - Nessun valore orfano.
+2026-04-12 09:38:47,800 - OK - Tipi coerenti tra FK e PK.
+2026-04-12 09:38:47,801 - INFO - 
+--- [controlla_fk] Controllo FK SALES.IDS_ITEM --> ITEM_LOOKUP.IDS_ITEM ---
+2026-04-12 09:38:47,801 - OK - Convertite a stringa FK 'IDS_ITEM' e PK 'IDS_ITEM'.
+2026-04-12 09:38:47,801 - OK - Nessun NaN nella FK 'IDS_ITEM'.
+2026-04-12 09:38:47,802 - OK - Nessun valore orfano.
+2026-04-12 09:38:47,802 - OK - Tipi coerenti tra FK e PK.
+2026-04-12 09:38:47,802 - INFO - 
+--- [controlla_fk] Controllo FK CUSTOMER_LOOKUP.ID_AREA_MANAGER --> AREA_MANAGER_LOOKUP.ID_AREA_MANAGER ---
+2026-04-12 09:38:47,803 - OK - Convertite a stringa FK 'ID_AREA_MANAGER' e PK 'ID_AREA_MANAGER'.
+2026-04-12 09:38:47,804 - ERROR - La FK 'ID_AREA_MANAGER' contiene 126 valori NaN.
+2026-04-12 09:38:47,804 - INFO - Eliminazione delle righe con NaN in 'ID_AREA_MANAGER'.
+2026-04-12 09:38:47,809 - ERROR - Valori orfani trovati: 20
+2026-04-12 09:38:47,809 - INFO - Eliminazione delle righe con FK orfane.
+2026-04-12 09:38:47,814 - OK - Tipi coerenti tra FK e PK.
+2026-04-12 09:38:47,815 - INFO - 
+--- [controlla_fk] Controllo FK ITEM_LOOKUP.ID_BUSINESS_LINE --> ITEM_BUSINESS_LINE_LOOKUP.ID_BUSINESS_LINE ---
+2026-04-12 09:38:47,815 - OK - Convertite a stringa FK 'ID_BUSINESS_LINE' e PK 'ID_BUSINESS_LINE'.
+2026-04-12 09:38:47,815 - OK - Nessun NaN nella FK 'ID_BUSINESS_LINE'.
+2026-04-12 09:38:47,816 - OK - Nessun valore orfano.
+2026-04-12 09:38:47,817 - OK - Tipi coerenti tra FK e PK.
+2026-04-12 09:38:47,817 - INFO - 
+
+=== [controlla_chiavi] FASE 3.3: CONTROLLO CHIAVI TECNICHE ===
+2026-04-12 09:38:47,817 - INFO - 
+--- [controlla_chiavi_tecniche] Analisi chiave tecnica: ID_ORDER_NUM ---
+2026-04-12 09:38:47,817 - OK - La colonna tecnica 'ID_ORDER_NUM' esiste.
+2026-04-12 09:38:47,818 - OK - La chiave tecnica 'ID_ORDER_NUM' è stata convertita a stringa.
+2026-04-12 09:38:47,818 - OK - Nessun NaN nella chiave tecnica 'ID_ORDER_NUM'.
+2026-04-12 09:38:47,818 - OK - Tipo coerente: str
+2026-04-12 09:38:47,818 - INFO - 
+--- [controlla_chiavi_tecniche] Analisi chiave tecnica: ID_ORDER_DATE ---
+2026-04-12 09:38:47,819 - OK - La colonna tecnica 'ID_ORDER_DATE' esiste.
+2026-04-12 09:38:47,819 - OK - La chiave tecnica 'ID_ORDER_DATE' è stata convertita a stringa.
+2026-04-12 09:38:47,819 - OK - Nessun NaN nella chiave tecnica 'ID_ORDER_DATE'.
+2026-04-12 09:38:47,820 - OK - Tipo coerente: str
+2026-04-12 09:38:47,820 - INFO - 
+--- [controlla_chiavi_tecniche] Analisi chiave tecnica: ID_INVOICE_DATE ---
+2026-04-12 09:38:47,820 - OK - La colonna tecnica 'ID_INVOICE_DATE' esiste.
+2026-04-12 09:38:47,820 - OK - La chiave tecnica 'ID_INVOICE_DATE' è stata convertita a stringa.
+2026-04-12 09:38:47,821 - OK - Nessun NaN nella chiave tecnica 'ID_INVOICE_DATE'.
+2026-04-12 09:38:47,821 - OK - Tipo coerente: str
+2026-04-12 09:38:47,821 - INFO - 
+--- [controlla_chiavi_tecniche] Analisi chiave tecnica: ID_COUNTRY ---
+2026-04-12 09:38:47,821 - OK - La colonna tecnica 'ID_COUNTRY' esiste.
+2026-04-12 09:38:47,822 - OK - La chiave tecnica 'ID_COUNTRY' è stata convertita a stringa.
+2026-04-12 09:38:47,822 - WARNING - La chiave tecnica 'ID_COUNTRY' contiene 6 valori NaN.
+2026-04-12 09:38:47,823 - OK - Tipo coerente: str
+2026-04-12 09:38:47,823 - INFO - 
+
+==== [main] FASE 4.1: ANALISI COLONNE DATA ====
+2026-04-12 09:38:47,823 - INFO - 
+=== [analizza_colonne_data] Analisi colonne 'DATE' per tabella: AREA_MANAGER_LOOKUP ===
+2026-04-12 09:38:47,823 - INFO - Nessuna colonna contenente 'DATE' trovata.
+2026-04-12 09:38:47,823 - INFO - 
+=== [analizza_colonne_data] Analisi colonne 'DATE' per tabella: COMPANY_LOOKUP ===
+2026-04-12 09:38:47,823 - INFO - Nessuna colonna contenente 'DATE' trovata.
+2026-04-12 09:38:47,823 - INFO - 
+=== [analizza_colonne_data] Analisi colonne 'DATE' per tabella: CUSTOMER_LOOKUP ===
+2026-04-12 09:38:47,823 - INFO - Nessuna colonna contenente 'DATE' trovata.
+2026-04-12 09:38:47,823 - INFO - 
+=== [analizza_colonne_data] Analisi colonne 'DATE' per tabella: ITEM_BUSINESS_LINE_LOOKUP ===
+2026-04-12 09:38:47,823 - INFO - Nessuna colonna contenente 'DATE' trovata.
+2026-04-12 09:38:47,823 - INFO - 
+=== [analizza_colonne_data] Analisi colonne 'DATE' per tabella: ITEM_LOOKUP ===
+2026-04-12 09:38:47,823 - INFO - Nessuna colonna contenente 'DATE' trovata.
+2026-04-12 09:38:47,823 - INFO - 
+=== [analizza_colonne_data] Analisi colonne 'DATE' per tabella: SALES ===
+2026-04-12 09:38:47,830 - INFO - 
+[COLONNA] ID_ORDER_DATE
+2026-04-12 09:38:47,830 - INFO -  - Valori a 8 cifre: 213
+2026-04-12 09:38:47,830 - INFO -  - Valori NON a 8 cifre: 0
+2026-04-12 09:38:47,832 - INFO - 
+[COLONNA] ID_INVOICE_DATE
+2026-04-12 09:38:47,832 - INFO -  - Valori a 8 cifre: 213
+2026-04-12 09:38:47,832 - INFO -  - Valori NON a 8 cifre: 0
+2026-04-12 09:38:47,832 - WARNING - 13 valori con anno > 2262 --> fuori range pandas
+2026-04-12 09:38:47,832 - INFO - Esempi: ['27881231']
+2026-04-12 09:38:47,832 - INFO - 
+
+==== [main] FASE 4.2: NORMALIZZAZIONE COLONNE DATA ====
+2026-04-12 09:38:47,832 - INFO - 
+=== [normalizza_colonne_data] Normalizzazione colonne DATE per tabella: SALES ===
+2026-04-12 09:38:47,832 - INFO - Colonne DATE da normalizzare: ['ID_ORDER_DATE', 'ID_INVOICE_DATE']
+2026-04-12 09:38:47,880 - OK - Conversione completata per 'ID_ORDER_DATE' in 'SALES'.
+2026-04-12 09:38:47,880 - INFO - Valori NaT finali: 0
+2026-04-12 09:38:47,918 - OK - Conversione completata per 'ID_INVOICE_DATE' in 'SALES'.
+2026-04-12 09:38:47,918 - INFO - Valori NaT finali: 0
+2026-04-12 09:38:47,918 - INFO - 
+
+=== [main] FASE 5: GESTIONE NAN PRE-MERGE ===
+2026-04-12 09:38:47,918 - INFO - 
+--- [gestisci_NaN_pre_merge] Analisi NaN per tabella: AREA_MANAGER_LOOKUP ---
+2026-04-12 09:38:47,919 - OK - Nessun valore NaN trovato.
+2026-04-12 09:38:47,919 - INFO - 
+--- [gestisci_NaN_pre_merge] Analisi NaN per tabella: COMPANY_LOOKUP ---
+2026-04-12 09:38:47,919 - OK - Nessun valore NaN trovato.
+2026-04-12 09:38:47,919 - INFO - 
+--- [gestisci_NaN_pre_merge] Analisi NaN per tabella: CUSTOMER_LOOKUP ---
+2026-04-12 09:38:47,920 - WARNING - La colonna 'ID_COUNTRY' contiene 6 NaN. Nessuna azione necessaria
+2026-04-12 09:38:47,920 - INFO - 
+--- [gestisci_NaN_pre_merge] Analisi NaN per tabella: ITEM_BUSINESS_LINE_LOOKUP ---
+2026-04-12 09:38:47,920 - OK - Nessun valore NaN trovato.
+2026-04-12 09:38:47,921 - INFO - 
+--- [gestisci_NaN_pre_merge] Analisi NaN per tabella: ITEM_LOOKUP ---
+2026-04-12 09:38:47,921 - OK - Nessun valore NaN trovato.
+2026-04-12 09:38:47,921 - INFO - 
+--- [gestisci_NaN_pre_merge] Analisi NaN per tabella: SALES ---
+2026-04-12 09:38:47,922 - OK - Nessun valore NaN trovato.
+2026-04-12 09:38:47,922 - INFO - 
+
+=== [main] FASE 6: ANALISI MONOVARIATA ===
+2026-04-12 09:38:47,922 - INFO - 
+
+--- [analisi_monovariata] ANALISI MONOVARIATA: AREA_MANAGER_LOOKUP ---
+2026-04-12 09:38:47,923 - INFO - [AREA_MANAGER_LOOKUP] Nessuna colonna numerica trovata.
+2026-04-12 09:38:47,924 - INFO - [AREA_MANAGER_LOOKUP] STATISTICHE CATEGORICHE (top 5 valori):
+2026-04-12 09:38:47,928 - INFO - 
+Colonna: ID_AREA_MANAGER
+ID_AREA_MANAGER
+403    1
+406    1
+411    1
+420    1
+425    1
+2026-04-12 09:38:47,930 - INFO - 
+Colonna: DESC_AREA_MANAGER
+DESC_AREA_MANAGER
+AREA MANAGER  403    1
+AREA MANAGER  406    1
+AREA MANAGER  411    1
+AREA MANAGER  420    1
+AREA MANAGER  425    1
+2026-04-12 09:38:47,930 - INFO - [AREA_MANAGER_LOOKUP] Nessuna colonna data trovata.
+2026-04-12 09:38:47,930 - INFO - 
+
+--- [analisi_monovariata] ANALISI MONOVARIATA: COMPANY_LOOKUP ---
+2026-04-12 09:38:47,930 - INFO - [COMPANY_LOOKUP] Nessuna colonna numerica trovata.
+2026-04-12 09:38:47,931 - INFO - [COMPANY_LOOKUP] STATISTICHE CATEGORICHE (top 5 valori):
+2026-04-12 09:38:47,932 - INFO - 
+Colonna: ID_COMPANY
+ID_COMPANY
+40     1
+143    1
+148    1
+174    1
+204    1
+2026-04-12 09:38:47,933 - INFO - 
+Colonna: DESC_COMPANY
+DESC_COMPANY
+COMPANY 00040    1
+COMPANY 00143    1
+COMPANY 00148    1
+COMPANY 00174    1
+COMPANY 00204    1
+2026-04-12 09:38:47,933 - INFO - [COMPANY_LOOKUP] Nessuna colonna data trovata.
+2026-04-12 09:38:47,934 - INFO - 
+
+--- [analisi_monovariata] ANALISI MONOVARIATA: CUSTOMER_LOOKUP ---
+2026-04-12 09:38:47,934 - INFO - [CUSTOMER_LOOKUP] Nessuna colonna numerica trovata.
+2026-04-12 09:38:47,935 - INFO - [CUSTOMER_LOOKUP] STATISTICHE CATEGORICHE (top 5 valori):
+2026-04-12 09:38:47,936 - INFO - 
+Colonna: IDS_CUSTOMER
+IDS_CUSTOMER
+00000-690719    1
+00000-703897    1
+00000-728589    1
+00040-610624    1
+00000-610624    1
+2026-04-12 09:38:47,937 - INFO - 
+Colonna: DESC_CUSTOMER
+DESC_CUSTOMER
+CUSTOMER 00000-690719    1
+CUSTOMER 00000-703897    1
+CUSTOMER 00000-728589    1
+CUSTOMER 00040-610624    1
+CUSTOMER 00000-610624    1
+2026-04-12 09:38:47,939 - INFO - 
+Colonna: ID_COUNTRY
+ID_COUNTRY
+US    487
+IT    161
+DE     97
+FR     77
+CA     44
+2026-04-12 09:38:47,941 - INFO - 
+Colonna: ID_AREA_MANAGER
+ID_AREA_MANAGER
+415    108
+4C1     73
+407     67
+4X4     65
+499     59
+2026-04-12 09:38:47,941 - INFO - [CUSTOMER_LOOKUP] Nessuna colonna data trovata.
+2026-04-12 09:38:47,941 - INFO - 
+
+--- [analisi_monovariata] ANALISI MONOVARIATA: ITEM_BUSINESS_LINE_LOOKUP ---
+2026-04-12 09:38:47,941 - INFO - [ITEM_BUSINESS_LINE_LOOKUP] Nessuna colonna numerica trovata.
+2026-04-12 09:38:47,942 - INFO - [ITEM_BUSINESS_LINE_LOOKUP] STATISTICHE CATEGORICHE (top 5 valori):
+2026-04-12 09:38:47,943 - INFO - 
+Colonna: ID_BUSINESS_LINE
+ID_BUSINESS_LINE
+000    1
+4C6    1
+4C1    1
+4C5    1
+4C7    1
+2026-04-12 09:38:47,944 - INFO - 
+Colonna: DESC_BUSINESS_LINE
+DESC_BUSINESS_LINE
+TRANSP    1
+BL 4C6    1
+BL 4C1    1
+BL 4C5    1
+BL 4C7    1
+2026-04-12 09:38:47,944 - INFO - [ITEM_BUSINESS_LINE_LOOKUP] Nessuna colonna data trovata.
+2026-04-12 09:38:47,945 - INFO - 
+
+--- [analisi_monovariata] ANALISI MONOVARIATA: ITEM_LOOKUP ---
+2026-04-12 09:38:47,945 - INFO - [ITEM_LOOKUP] Nessuna colonna numerica trovata.
+2026-04-12 09:38:47,946 - INFO - [ITEM_LOOKUP] STATISTICHE CATEGORICHE (top 5 valori):
+2026-04-12 09:38:47,947 - INFO - 
+Colonna: IDS_ITEM
+IDS_ITEM
+7292139-W401MAG    1
+7292140-W401MAG    1
+7375222-W401MAG    1
+7384676-W401MAG    1
+7484440-W401MAG    1
+2026-04-12 09:38:47,948 - INFO - 
+Colonna: DESC_ITEM
+DESC_ITEM
+ITEM  7292139-W401MAG    1
+ITEM  7292140-W401MAG    1
+ITEM  7375222-W401MAG    1
+ITEM  7384676-W401MAG    1
+ITEM  7484440-W401MAG    1
+2026-04-12 09:38:47,949 - INFO - 
+Colonna: ID_BUSINESS_LINE
+ID_BUSINESS_LINE
+4C7    22
+4C1     5
+2026-04-12 09:38:47,949 - INFO - [ITEM_LOOKUP] Nessuna colonna data trovata.
+2026-04-12 09:38:47,950 - INFO - 
+
+--- [analisi_monovariata] ANALISI MONOVARIATA: SALES ---
+2026-04-12 09:38:47,950 - INFO - [SALES] STATISTICHE NUMERICHE:
+2026-04-12 09:38:47,966 - INFO - 
+        VAL_REVENUES      VAL_COST
+count     213.000000    213.000000
+mean    34953.296103  17310.975369
+std     16510.663887   9019.329464
+min     20329.610000   7096.634800
+25%     25666.000000  11998.000000
+50%     32724.000000  17343.753300
+75%     39596.400000  20171.504800
+max    169160.400000  86154.600000
+2026-04-12 09:38:47,967 - INFO - [SALES] STATISTICHE CATEGORICHE (top 5 valori):
+2026-04-12 09:38:47,968 - INFO - 
+Colonna: ID_COMPANY
+ID_COMPANY
+40       114
+80640     99
+2026-04-12 09:38:47,969 - INFO - 
+Colonna: ID_ORDER_NUM
+ID_ORDER_NUM
+25402070    2
+25402388    2
+25471810    2
+25437824    1
+25428861    1
+2026-04-12 09:38:47,970 - INFO - 
+Colonna: IDS_CUSTOMER
+IDS_CUSTOMER
+00040-10277     24
+00040-45887     17
+80640-207312    15
+80640-615382     8
+00040-209369     7
+2026-04-12 09:38:47,971 - INFO - 
+Colonna: IDS_ITEM
+IDS_ITEM
+7245498-W401MAG    38
+7481581-405MAG     30
+7273238-405MAG     29
+7245502-W401MAG    15
+7479346-405MAG     14
+2026-04-12 09:38:47,971 - INFO - [SALES] ANALISI COLONNE 'DATE':
+2026-04-12 09:38:47,972 - INFO -   - ID_ORDER_DATE: min=2025-01-08 00:00:00, max=2026-03-19 00:00:00
+2026-04-12 09:38:47,972 - INFO -   - ID_INVOICE_DATE: min=2025-01-09 00:00:00, max=2788-12-31 00:00:00
+2026-04-12 09:38:47,972 - INFO - 
+
+=== [main] FASE 7: CORRELAZIONI ===
+2026-04-12 09:38:47,974 - INFO - 
+--- [analisi_correlazioni] ANALISI CORRELAZIONI: SALES ---
+2026-04-12 09:38:47,974 - INFO - [SALES] Matrice di correlazione:
+2026-04-12 09:38:47,975 - INFO - 
+              VAL_REVENUES  VAL_COST
+VAL_REVENUES         1.000     0.949
+VAL_COST             0.949     1.000
+2026-04-12 09:38:47,975 - INFO - 
+
+=== [main] FASE 8: CALCOLO COLONNE DERIVATE: MARGINI ===
+2026-04-12 09:38:47,977 - OK - [calcola_margini] Colonna VAL_MARGIN calcolata correttamente nella tabella SALES.
+2026-04-12 09:38:47,977 - INFO - 
+
+=== [main] FASE 9: MERGE TABELLE ===
+2026-04-12 09:38:47,978 - INFO - Avvio merge LEFT JOIN tra SALES e COMPANY_LOOKUP sulla chiave 'ID_COMPANY'.
+2026-04-12 09:38:47,979 - INFO - Righe tabella figlia: 213 | Righe tabella padre: 26
+2026-04-12 09:38:47,983 - OK - Merge completato senza variazioni nel numero di righe (213).
+2026-04-12 09:38:47,983 - INFO - Avvio merge LEFT JOIN tra SALES e CUSTOMER_LOOKUP sulla chiave 'IDS_CUSTOMER'.
+2026-04-12 09:38:47,983 - INFO - Righe tabella figlia: 213 | Righe tabella padre: 947
+2026-04-12 09:38:47,986 - OK - Merge completato senza variazioni nel numero di righe (213).
+2026-04-12 09:38:47,986 - INFO - Avvio merge LEFT JOIN tra CUSTOMER_LOOKUP e AREA_MANAGER_LOOKUP sulla chiave 'ID_AREA_MANAGER'.
+2026-04-12 09:38:47,986 - INFO - Righe tabella figlia: 213 | Righe tabella padre: 192
+2026-04-12 09:38:47,989 - OK - Merge completato senza variazioni nel numero di righe (213).
+2026-04-12 09:38:47,989 - INFO - Avvio merge LEFT JOIN tra SALES e ITEM_LOOKUP sulla chiave 'IDS_ITEM'.
+2026-04-12 09:38:47,989 - INFO - Righe tabella figlia: 213 | Righe tabella padre: 27
+2026-04-12 09:38:47,991 - OK - Merge completato senza variazioni nel numero di righe (213).
+2026-04-12 09:38:47,992 - INFO - Avvio merge LEFT JOIN tra ITEM_LOOKUP e ITEM_BUSINESS_LINE_LOOKUP sulla chiave 'ID_BUSINESS_LINE'.
+2026-04-12 09:38:47,992 - INFO - Righe tabella figlia: 213 | Righe tabella padre: 5
+2026-04-12 09:38:47,995 - OK - Merge completato senza variazioni nel numero di righe (213).
+2026-04-12 09:38:47,995 - INFO - 
+
+=== [main] FASE 10: CONTROLLO NAN POST-MERGE ===
+2026-04-12 09:38:47,998 - OK - Nessuna colonna contiene NaN.
+2026-04-12 09:38:47,998 - INFO - 
+
+=== [main] FASE 11: CREAZIONE ATTRIBUTI TEMPORALI ===
+2026-04-12 09:38:48,001 - OK - Colonne ORDER_YEAR, ORDER_MONTH e ORDER_WEEK create correttamente.

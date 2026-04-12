@@ -911,7 +911,7 @@ def aggiungi_order_features(df):
     df["ORDER_MONTH"] = df["ID_ORDER_DATE"].dt.month
     df["ORDER_WEEK"] = df["ID_ORDER_DATE"].dt.isocalendar().week
 
-    logger.ok(f"Colonne ORDER_YEAR, ORDER_MONTH e ORDER_WEEK create correttamente.")
+    logger.ok(f"Colonne ORDER_YEAR, ORDER_MONTH e ORDER_WEEK create correttamente.\n")
 
     return df
 
@@ -1010,8 +1010,10 @@ def main(carica=True, salva=True, tabelle=None):
     
     # Salvataggio del file OLAP finale SOLO se salva=True
     if salva:
-        logger.info("\n\n=== [main] FASE 12: DOWNLOAD DEL FILE OLAP ===")
+        logger.info(f"\n\n=== [main] FASE 12: DOWNLOAD DEL FILE OLAP ===")
         salva_dataset_olap(df_merge, nome_file="olap.csv")
+    else:
+        logger.info(f"=== [main] FINE ETL (etl.py::main) ===")
 
     return df_merge
 
