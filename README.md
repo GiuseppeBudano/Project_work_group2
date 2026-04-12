@@ -67,11 +67,6 @@ project/
 ├── AREA_MANAGER_LOOKUP.csv         # Dimensione area manager
 ├── ITEM_BUSINESS_LINE_LOOKUP.csv   # Dimensione business line
 │
-├── output/                         # File di output generati automaticamente
-│   ├── olap.csv                    # Tabella OLAP denormalizzata
-│   ├── Sales_Forecast_PowerBI.csv  # Storico + previsioni per Power BI
-│   ├── report_statistiche.xlsx     # Report statistiche multi-foglio
-│   └── *.png                       # Grafici di forecast esportati
 │
 ├── logs/                           # Log ETL con timestamp (generati automaticamente)
 │   └── etl_YYYYMMDD_HHMMSS.log
