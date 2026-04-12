@@ -1,0 +1,2 @@
+2026-04-12 09:38:30,207 - INFO - Logger inizializzato correttamente (etl.py::crea_logger)
+2026-04-12 09:38:30,207 - INFO - === AVVIO ETL (etl.py::main) ===

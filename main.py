@@ -47,7 +47,7 @@ def main():
             with st.spinner("Elaborazione in corso..."):              
                 
                 # 1. ETL (passando il dizionario)
-                df_olap = etl.esegui_etl(carica=False, salva=False, tabelle=tabelle)
+                df_olap = etl.main(carica=False, salva=False, tabelle=tabelle)
                 st.session_state.df_olap = df_olap
                 
                 # 2. FORECASTING — vedi sezione dedicata più sotto
