@@ -15,9 +15,8 @@ Un'applicazione Python standalone che analizza dati storici di vendita, genera r
 3. [Requisiti](#requisiti)
 4. [Installazione](#installazione)
 5. [Utilizzo](#utilizzo)
-   - [Opzione A — Streamlit](#opzione-a----avvio-tramite-streamlit-consigliata)
-   - [Opzione B — Jupyter Notebook](#opzione-b----esecuzione-tramite-jupyter-notebook)
-   - [Opzione C — Import diretto](#opzione-c----importazione-diretta-dei-moduli)
+   - [Opzione A — Streamlit](#opzione-a----avvio-tramite-streamlit-consigliata)   
+   - [Opzione B — Import diretto](#opzione-c----importazione-diretta-dei-moduli)
 6. [Formato dei dati di input](#formato-dei-dati-di-input)
 7. [Output generati](#output-generati)
 8. [Modello di previsione](#modello-di-previsione)
@@ -123,13 +122,9 @@ L'interfaccia web si aprirà automaticamente nel browser. Da lì è possibile:
 
 1. Caricare i 6 file CSV
 2. Cliccare su **"Avvia Pipeline Completa"** per eseguire l'intera pipeline ETL → Statistiche → Grafici → Previsioni
-3. Scaricare il dataset OLAP (`sales_merge.csv`) e le previsioni (`previsioni.csv`) dalla sezione di esportazione
+3. Scaricare il dataset OLAP (`Sales_OLAP_Completo.csv`) e le previsioni (`Sales_Forecast_PowerBI.csv`) dalla sezione di esportazione
 
-### Opzione B — Esecuzione tramite Jupyter Notebook
-
-Apri `main.ipynb` in Jupyter o VS Code ed esegui tutte le celle in ordine. Ogni sezione è etichettata e può essere eseguita in modo indipendente.
-
-### Opzione C — Importazione diretta dei moduli
+### Opzione B — Importazione diretta dei moduli
 
 Ogni modulo può essere utilizzato in modo autonomo:
 
@@ -208,7 +203,5 @@ La valutazione del modello utilizza **TimeSeriesSplit con 3 fold** per garantire
 
 ## Limitazioni note
 
-- Il dataset copre solo 15 mesi (gen 2025 – mar 2026), il che limita la capacità del modello di catturare stagionalità pluriennali.
-- `VAL_COST` è un campo di costo aggregato, non è suddiviso in COGS e spese operative, quindi EBIT ed EBITDA non possono essere calcolati direttamente.
-- 14 righe in `ID_INVOICE_DATE` contengono l'anno 2788 (dati di test), vengono gestite come stringhe ed escluse dai calcoli basati sulle date.
-- Il modello di previsione è volutamente semplice (regressione lineare), per un utilizzo in produzione si consiglia di valutare approcci più avanzati come ARIMA, Prophet o gradient boosting.
+- Il software non supporta formati di input diversi dal CSV: file Excel, JSON o database relazionali richiedono una fase di conversione preliminare prima di poter essere utilizzati.
+- Il modulo di forecasting supporta esclusivamente l'aggregazione mensile: granularità giornaliera o settimanale non sono attualmente gestite.
