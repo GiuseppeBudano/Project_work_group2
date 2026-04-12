@@ -246,7 +246,5 @@ Entrambi i modelli vengono riallenati su tutti i dati disponibili dopo la fase d
 ## Limitazioni note
 
 - Il software non supporta formati di input diversi dal CSV: file Excel, JSON o database relazionali richiedono una fase di conversione preliminare prima di poter essere utilizzati.
-- Non è prevista una gestione automatica degli aggiornamenti incrementali: ogni esecuzione rielabora l'intera pipeline dall'inizio, senza la possibilità di aggiornare solo i dati più recenti.
-- L'interfaccia Streamlit non supporta l'autenticazione utente: l'applicazione è pensata per un utilizzo locale o in ambienti di rete protetti, e non è adatta a un deployment pubblico senza un layer di sicurezza aggiuntivo.
 - Il modulo di forecasting supporta esclusivamente l'aggregazione mensile: granularità giornaliera o settimanale non sono attualmente gestite.
-- I grafici di forecast vengono esportati in formato PNG nella cartella `output/`; i grafici dell'analisi esplorativa vengono renderizzati direttamente nell'interfaccia Streamlit e non salvati su disco.
+
