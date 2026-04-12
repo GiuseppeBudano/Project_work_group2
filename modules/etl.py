@@ -349,11 +349,14 @@ def controlla_fk(tabella_figlia, df_figlia, fk, tabella_padre, df_padre, pk):
 
 def controlla_chiavi_tecniche(tabella, df, lista_chiavi_tecniche):
     """
-    Esegue i controlli di integrità sulle chiavi del modello:
-    - chiavi primarie: esistenza, NaN, duplicati, tipi coerenti
-    - chiavi esterne: esistenza, NaN, duplicati, orfani, tipi coerenti
-    - chiavi tecniche: validazione e pulizia
-    Aggiorna e restituisce il dizionario delle tabelle.
+    Controlla esistenza, coerenza e qualità delle chiavi tecniche.
+    Per ogni chiave:
+    - verifica che la colonna esista;
+    - converte i valori a stringa;
+    - segnala eventuali NaN;
+    - controlla la coerenza dei tipi presenti;
+    - registra ogni passaggio tramite logger.
+    Ritorna il DataFrame con le chiavi tecniche convertite a stringa.
     """
     for chiave in lista_chiavi_tecniche:
         logger.info(f"\n--- [controlla_chiavi_tecniche] Analisi chiave tecnica: {chiave} ---")
