@@ -6,7 +6,21 @@ import matplotlib.pyplot as plt
 def analisi_qualitativa(df, nome):
     """
     Esegue un'analisi qualitativa sintetica del DataFrame.
+
+    Le colonne con prefisso 'ID' e le variabili temporali derivate
+    (ORDER_YEAR, ORDER_MONTH, ORDER_WEEK) sono escluse dall'analisi
+    del range numerico in quanto non significative da aggregare.
+ 
+    Parametri:    
+    df : pd.DataFrame
+        DataFrame da analizzare.
+    nome : str
+        Nome del dataset, usato come intestazione nel report stampato.
+ 
+    Restituisce    
+    None — l'output viene stampato su console.
     """
+    
     print("\n" + "=" * 80)
     print(f"DATASET: {nome.upper()}")
     print("=" * 80)
@@ -58,6 +72,23 @@ def analisi_qualitativa(df, nome):
 
 
 def statistiche_numeriche(df, nome):
+    """
+    Calcola e stampa le statistiche descrittive delle variabili numeriche. 
+    Le colonne con prefisso 'ID' e le variabili temporali derivate
+    (ORDER_YEAR, ORDER_MONTH, ORDER_WEEK) sono escluse dall'analisi
+    in quanto identificatori o aggregazioni temporali non significative.
+ 
+    Parametri:
+    df : pd.DataFrame
+        DataFrame da analizzare.
+    nome : str
+        Nome del dataset, usato come intestazione nel report stampato.
+ 
+    Restituisce:
+    None — l'output viene stampato su console.
+          La funzione termina anticipatamente se non sono presenti
+          variabili numeriche rilevanti.
+    """
     numeriche = df.select_dtypes(include=np.number)
 
     numeriche = numeriche.drop(columns=[col for col in numeriche.columns if "ID" in col or col in ["ORDER_YEAR", "ORDER_MONTH","ORDER_WEEK"]],errors="ignore")
@@ -78,15 +109,34 @@ def statistiche_numeriche(df, nome):
 #for nome, df in datasets.items():
     #statistiche_numeriche(df, nome)
 
-
-# Le statistiche descrittive mostrano che il valore medio dei ricavi (VAL_REVENUES) è significativamente superiore al valore medio dei costi (VAL_COST). Tale differenza indica la presenza di un margine operativo positivo, suggerendo che, in media, le operazioni di vendita generano valore economico. Inoltre, il rapporto tra ricavi e costi evidenzia una struttura favorevole in termini di redditività.
-
 # In[29]:
 
 
 def statistiche_categoriche(df, nome, top_n=10):
     """
     Calcola e visualizza le distribuzioni delle variabili categoriche.
+ 
+    Per ogni variabile di tipo object, category o bool presente nel
+    DataFrame, stampa le prime top_n occorrenze più frequenti con il
+    relativo conteggio e la percentuale sul totale delle righe.
+    Include i valori NaN nel conteggio per evidenziare eventuali dati
+    mancanti nelle variabili categoriche. 
+    Al termine del report viene stampato il numero di valori unici
+    per ciascuna variabile categorica, in ordine decrescente.
+ 
+    Parametri:
+    df : pd.DataFrame
+        DataFrame da analizzare.
+    nome : str
+        Nome del dataset, usato come intestazione nel report stampato.
+    top_n : int, default=10
+        Numero massimo di valori da mostrare per ogni variabile.
+        Utile per limitare l'output su variabili ad alta cardinalità.
+ 
+    Restituisce:
+    None — l'output viene stampato su console.
+          La funzione termina anticipatamente se non sono presenti
+          variabili categoriche.
     """
     categoriche = df.select_dtypes(include=["object", "category", "bool"])
 
